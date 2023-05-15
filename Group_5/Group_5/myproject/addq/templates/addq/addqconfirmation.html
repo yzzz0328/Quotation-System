@@ -1,0 +1,25 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<div class="formaddq" >
+    <br>
+    <hi><p><strong>Quotation Added!</strong></p></hi>  
+
+    <p>Quotation ID: {{ quotation_id }}</p>
+    <p>Purchase Requisition ID: {{ purchase_requisition_id }}</p>
+    <p>Customer: {{ customer_id }}</p>
+    <p>Salesman ID: {{ salesman_id }}</p>
+    <p>Quotation Total Price: {{ quotation_total_price }}</p>
+    <p>Quotation Created Date: {{ quotation_created_date }}</p>
+    <p>Quotation Expiry Date: {{ quotation_expiry_date }}</p>
+
+    <form class="addqsubmission margintop" action="addqdetails" method="POST">
+        <div class="margintop">
+            <a class="btn btn-danger btn-square buttonsize" href="/menu">Cancel</a>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,117 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    .column {
+      float: left;
+      width: 50%;
+      padding: 5px;
+    }
+    
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #DDD;
+    }
+    
+    tr:hover {background-color: #D6EEEE;}
+</style>
+
+<div class="formviewpendingpo">
+    <form class="viewpendingpoform" action="showpoconfirmation" method="POST">
+      {% csrf_token %}
+    <br><br>
+      <center><h2 style="font-size:50px"> <strong>Pending Purchase Order</strong> </h2></center>
+    <br><br>
+        <div>
+          <br><br>
+    <table>
+        <tr>
+          <th>Purchase Order ID</th>
+          <th>Quotation ID</th>
+          <th>Finance Officer ID</th>
+          <th>Created Date</th>
+          <th>Delivery Date</th>
+          <th>Status</th>
+          <th>Customer ID</th>
+          <th>Customer Name</th>
+        </tr>
+        {% for i in po %}
+          <tr>
+            <td>{{ i.0 }}</td>
+            <td>{{ i.1 }}</td>
+            <td>{{ fo_id }}</td>
+            <td>{{ i.3 }}</td>
+            <td>{{ i.4 }}</td>
+            <td>Pending</td>
+            <td>{{ cust_userID }}</td>
+            <td>{{ cust_fullname }}</td>
+          </tr>
+        {% endfor %}
+    </table>
+
+    <br><br>
+        <center><h2 style="font-size:40px"> <strong>Purchase Order Item Table</strong> </h2></center>
+    <br><br>
+    <table>
+        <tr>
+          <th>Item ID</th>
+          <th>Item Name</th>
+          <th>Item Quantity</th>
+          <th>Item Unit Price</th>
+          <th>Item Total Price (RM)</th>
+        </tr>
+        {% for j in item_list %}
+          <tr>
+            <td>{{ j.0 }}</td>
+            <td>{{ j.1 }}</td>
+            <td>{{ j.2 }}</td>
+            <td>{{ j.3|floatformat:2 }}</td>
+            <td>{{ j.4|floatformat:2 }}</td>
+          </tr>
+        {% endfor %}
+    </table>
+    <br><br>
+    <div style="width: 100%;">
+        <div style="width: 20%; height: 50px; float: left;"> 
+          <p><strong> Purchase Order ID: </strong></p>
+        </div>
+        <div style="margin-left: 20%; height: 50px;"> 
+          <p><input type="text" name='purchase_order_id' placeholder='{{ po_id }}'  class="form-control" /></p>
+        </div>
+    </div>
+    <div style="width: 100%;">
+        <div style="width: 20%; height: 50px; float: left;"> 
+          <p><strong> Status (Approved/Rejected): </strong></p>
+        </div>
+        <div style="margin-left: 20%; height: 50px;"> 
+          <p><input type="text" name='status' placeholder='Approved/Rejected'  class="form-control" /></p>
+        </div>
+    </div>
+    <br><br>
+      <center>
+        <div class="margintop">
+            <td><button id = "Submit_btn" name = "Submit" type="submit" class="btn btn-success btn-square buttonsize">Submit</button></td>
+            <a class="btn btn-danger btn-square buttonsize" href="/menu">Cancel</a>
+        </div>
+      </center>
+    </form>
+
+</div>
+
+{% endblock %}

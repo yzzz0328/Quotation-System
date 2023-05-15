@@ -1,0 +1,65 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<style>
+    * {
+      box-sizing: border-box;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #DDD;
+    }
+    
+    tr:hover {background-color: #D6EEEE;}
+</style>
+
+<div class="formaddpo">
+    <form class="viewqsubmission" action="addpoform" method="POST">
+      {% csrf_token %}
+    <br><br>
+      <center><h2 style="font-size:50px"> <strong>Quotation List</strong> </h2></center>
+    <br><br>
+        <div>
+          <br><br>
+          <table>
+            <tr>
+              <th>Quotation ID</th>
+              <th>Customer ID</th>
+            </tr>
+            {% for i in quotationlist %}
+              <tr>
+                <td>{{ i.quotation_id }}</td>
+                {% for user in all_users %}
+                  {% if i.customer_id == user.id %}
+                    <td>{{ user.username }}</td>
+                  {% endif%}
+                {% endfor%}
+              </tr>
+            {% endfor %}
+            </table>
+            <br><br>
+            <div style="width: 100%;">
+              <div style="width: 15%; height: 50px; float: left;"> 
+                <p><strong> Quotation ID: </strong></p>
+              </div>
+              <div style="margin-left: 15%; height: 50px;"> 
+                <p><input type="text" name='quotation_id' placeholder='Quotation ID'  class="form-control" /></p>
+              </div>
+            </div>
+            <center>
+              <div class="margintop">
+                <td><button id = "Create_btn" type="submit" class="btn btn-success btn-square buttonsize">Create</button></td>
+                <a class="btn btn-danger btn-square buttonsize" href="/menu">Cancel</a>
+              </div>
+            </center>
+    </form>
+</div>
+
+{% endblock %}

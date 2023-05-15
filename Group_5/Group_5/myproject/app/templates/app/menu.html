@@ -1,0 +1,125 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div>
+    <br />
+    {% if is_employee %}
+        <center><h2>Employee Menu</h2></center>
+    {% elif is_customer %}
+        <center><h2>Customer Menu</h2></center>
+    {% elif is_salesman %}
+        <center><h2>Salesman Menu</h2></center>
+    {% elif is_finance_officer %}
+        <center><h2>Finance Officer Menu</h2></center>
+    {% elif is_manager %}
+        <center><h2>Manager Menu</h2></center>
+    {% endif %}
+
+    <br />
+    <center>
+    <table> 
+    {% if is_employee %}
+        <tr><td>
+    <form class="margintop" action='additemform' method='GET'>
+        <button type="submit" class="btn btn-info" style="height:40px;width:250px">Add Item</button><br />
+    </form>
+            </td></tr>
+
+        <tr><td>
+    <form class="margintop" action='addprform' method='GET'>
+        <button type="submit" class="btn btn-info" style="height:40px;width:250px">Add Purchase Requisition</button><br />
+    </form>
+            </td></tr>
+
+        <tr><td>
+    <form class="margintop" action='module2' method='GET'>
+        <button type="submit" class="btn btn-outline-info waves-effect" style="height:40px;width:250px">Module 2</button><br />
+    </form>
+        </td></tr>
+
+    {% elif is_customer %}
+    <tr><td>
+        <form class="margintop" action='addprform' method='GET'>
+            <button type="submit" class="btn btn-info" style="height:40px;width:250px">Create Purchase Requisition</button><br/>
+        </form>
+    </td></tr>
+    <tr><td>
+        <form class="margintop" action='viewprlist' method='GET'>
+            <button type="submit" class="btn btn-info" style="height:40px;width:250px">View Purchase Requisition</button><br/>
+        </form>
+    </td></tr>
+    <tr><td>
+        <form class="margintop" action='viewcqlist' method='GET'>
+            <button type="submit" class="btn btn-info" style="height:40px;width:250px">View Customer's Quotation</button><br/>
+        </form>
+    </td></tr>  
+
+    {% elif is_salesman %}
+        <tr><td>
+    <form class="margintop" action='prlist' method='GET'>
+        <button type="submit" class="btn btn-info" style="height:40px;width:250px">Create Quotation</button><br />
+    </form>
+            </td></tr>
+
+        <tr><td>
+    <form class="margintop" action='qlist' method='GET'>
+        <button type="submit" class="btn btn-info" style="height:40px;width:250px">View Created Quotation</button><br />
+    </form>
+        </td></tr> 
+        <tr><td>
+    <form class="margintop" action='viewstock' method='GET'>
+        <button type="submit" class="btn btn-info" style="height:40px;width:250px">View Stock</button><br />
+    </form>
+        </td></tr> 
+
+    {% elif is_finance_officer %}
+        <tr><td>
+        <tr><td>
+            <form class="margintop" action='quotationlist' method='GET'>
+                <button type="submit" class="btn btn-info" style="height:40px;width:250px">Add Purchase Order</button><br />
+            </form>
+                </td></tr>
+            
+        <tr><td>
+            <form class="margintop" action='polist' method='GET'>
+                <button type="submit" class="btn btn-info" style="height:40px;width:250px">View Purchase Order</button><br />
+            </form>
+                </td></tr>  
+        
+
+    {% elif is_manager %}  
+        <tr><td>
+    <form class="margintop" action='viewreport' method='GET'>
+        <button type="submit" class="btn btn-info" style="height:40px;width:250px">View Purchase Order Report</button><br />
+    </form>
+        </td></tr>
+            
+        <tr><td>
+    <form class="margintop" action='viewstock' method='GET'>
+        <button type="submit" class="btn btn-info" style="height:40px;width:250px">View Stock</button><br />
+    </form>
+        </td></tr>
+        <tr><td>
+    <form class="margintop" action='viewpendingpo' method='GET'>
+        <button type="submit" class="btn btn-info" style="height:40px;width:250px">View Pending Purchase Order</button><br/>
+    </form>
+        </td></tr>
+        <tr><td>
+    <form class="margintop" action='viewpo_M' method='GET'>
+        <button type="submit" class="btn btn-info" style="height:40px;width:250px">View Purchase Order</button><br/>
+    </form>
+        </td></tr>
+    {% else %}            
+
+        <tr><td>
+            <p>Undefined User.</p>
+        </td></tr>
+            
+    {% endif %}            
+    </table>
+    </center>
+</div>
+
+{% endblock %}
+ 

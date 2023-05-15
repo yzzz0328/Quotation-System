@@ -1,0 +1,52 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<style>
+    * {
+      box-sizing: border-box;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #DDD;
+    }
+    
+    tr:hover {background-color: #D6EEEE;}
+</style>
+
+<div class="formviewstock">
+    <br><br>
+      <center><h2 style="font-size:50px"> <strong>Stock List</strong> </h2></center>
+        <div>
+          <br><br>
+          <table>
+            <tr>
+                <th>Item ID</th>
+                <th>Item Name</th>
+                <th>Stock Quantity</th>
+            </tr>
+            {% for i in stocklist %}
+              <tr>
+                <td>{{ i.item.item_id }}</td>
+                <td>{{ i.item.item_name }}</td>
+                <td>{{ i.stock_quantity }}</td>
+                <td></td>
+              </tr>
+            {% endfor %}
+            </table>
+            <br><br>
+            <center>
+              <div class="margintop">
+                <a class="btn btn-danger btn-square buttonsize" href="/menu">Cancel</a>
+              </div>
+            </center>
+    </form>
+</div>
+
+{% endblock %}

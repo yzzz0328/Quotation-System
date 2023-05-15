@@ -1,0 +1,59 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<style>
+    * {
+    box-sizing: border-box;
+    }
+    table {
+    border-collapse: collapse;
+    width: 100%;
+    }
+    th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #DDD;
+    }
+    tr:hover {background-color: #D6EEEE;}
+</style>
+<div class="formadditem" >
+    {% for message in messages %}
+    <div class="alert alert-success">
+        <a class="close" href="#" data-dismiss="alert"></a>
+        {{ message }}
+    </div>
+    {% endfor %}
+    <br><br>
+    <center>
+        <h2 style="font-size:50px"> <strong>Purchase Requisition Added!</strong> </h2>
+    </center>
+    <br><br>
+    <p>Purchase Requisition ID: {{ purchase_requisition_id }}</p>
+    <p>Customer ID: {{ newcustomer }}</p>
+    <p>Submitted Date: {{ submitted_date }}</p>
+    <p>Purchase Requisition Status: {{ purchase_requisition_status }}</p>
+    <br><br>
+    <center>
+        <h2 style="font-size:30px"> <strong>Purchase Requisition Item List</strong> </h2>
+    </center>
+    <table>
+        <tr>
+            <th>Item ID</th>
+            <th>Item Quantity</th>
+        </tr>
+        {% for x in purchase_requisition_item %}
+        <tr>
+            <td>{{ x.item_id }}</td>
+            <td>{{ x.item_quantity_PR }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br><br>
+    <center>
+        <form class="addprsubmission margintop" action="addprdetails" method="POST">
+            <div class="margintop">
+                <a class="btn btn-danger btn-square buttonsize" href="/menu">Cancel</a>
+            </div>
+    </center>
+    </form>
+</div>
+{% endblock %}

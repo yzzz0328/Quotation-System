@@ -1,0 +1,74 @@
+{% extends "app/layout.html" %}
+{% block content %}
+
+<style>
+    * {
+      box-sizing: border-box;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #DDD;
+    }
+
+    tr:hover {background-color: #D6EEEE;}
+</style>
+
+<div class="container">
+    <br>
+    <div class="container">
+    <h1 style="text-align: center"><strong>Quotation List</strong></h1>
+    </div>
+    <br>
+    <div class="container">
+    <h2 class="pull-left">ID: {{ user.get_username }}</h2>
+    <h2 class="pull-right">Name: {{ user.get_full_name }}</h2>
+    </div>
+    <br>
+
+    <form class="viewcq" action="viewcq" method="POST">
+        {% csrf_token %}
+        <div class="container">
+            <table class="table-bordered table-hover">
+                <tr>
+                    <th style="text-align: center">Quotation ID</th>
+                    <th style="text-align: center">Purchase Requisition ID</th>
+                    <th style="text-align: center">Created Date</th>
+                    <th style="text-align: center">Expiry Date</th>
+                </tr>
+                {% for cq in cqlist %}
+                <tr>
+                    <td style="text-align: center">{{ cq.quotation_id }}</td>
+                    <td style="text-align: center">{{ cq.purchase_requisition.purchase_requisition_id }}</td>
+                    <td style="text-align: center">{{ cq.quotation_created_date }}</td>
+                    <td style="text-align: center">{{ cq.quotation_expiry_date }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <br>
+        {% if messages %}
+            <ul class="messages">
+                <center>
+                {% for message in messages %}
+                <p {% if message.tags %} class="{{ message.tags }}" style="color:red;font-size:30px" {% endif %}>{{ message }}</p>
+                {% endfor %}
+                </center>
+            </ul>
+        {% endif %}
+        <br>
+    <div class="margintop">
+        <a class="btn btn-danger pull-left" href="menu">Back</a>
+        <button type="submit" class="btn btn-success pull-right">View</button>
+        <input type="text" name="quotation_id" placeholder="Quotation ID" class="form-control pull-right">
+    </div>
+    </form>
+
+</div>
+{% endblock %}

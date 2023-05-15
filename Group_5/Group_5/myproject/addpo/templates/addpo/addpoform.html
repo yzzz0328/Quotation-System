@@ -1,0 +1,126 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #DDD;
+  }
+  
+  tr:hover {background-color: #D6EEEE;}
+</style>
+
+<div class="formaddpo">
+    <br><br>
+      <center><h2 style="font-size:50px"> <strong>Purchase Order Form</strong> </h2></center>
+      <center><h2="font-size:40px"><em>Fill In Purchase Order Form According To Quotation: {{ quotation_id }}</em></h2></center>
+    <br><br>
+    <form class="addposubmission" action="addpoconfirmation" method="POST">
+        {% csrf_token %}
+        <div style="width: 100%;">
+          <div style="width: 20%; height: 50px; float: left;"> 
+            <p><strong> Quotation ID: </strong></p>
+          </div>
+          <div style="margin-left: 20%; height: 50px;"> 
+            <p><input type="text" name='quotation_id' placeholder='{{ quotation_id }}'  class="form-control" /></p>
+          </div>
+        </div>
+        <div style="width: 100%;">
+          <div style="width: 20%; height: 50px; float: left;"> 
+            <p><strong> Delivery Date: </strong></p>
+          </div>
+          <div style="margin-left: 20%; height: 50px;"> 
+            <p><input type="date" name='purchase_order_delivery_date' placeholder='Purchase Order Delivery Date'  class="form-control" /></p>
+          </div>
+        </div>
+        <br><br>
+        
+          <center><h2="font-size:40px"><em>Quotation Item Details</em></h2></center>
+          <br><br>
+          <table>
+            <tr>
+              <th>Item ID</th>
+              <th>Item Name</th>
+              <th>Item Quantity</th>
+              <th>Item Unit Price (RM)</th>
+              <th>Item Total Price (RM)</th>
+            </tr>
+            {% for i in item_list %}
+              <tr>
+                <td>{{ i.0 }}</td>
+                <td>{{ i.1}}</td>
+                <td>{{ i.2}}</td>
+                <td>{{ i.3}}</td>
+                <td>{{ i.4}}</td>
+              </tr>
+            {% endfor %}
+            </table>
+            <br><br>
+
+            <center><h2="font-size:40px"><em>Fill In Purchase Order Item Details</em></h2></center>
+            <br><br>
+
+              <table class="table table-bordered table-hover" id="tab_logic">
+                <thead>
+                  <tr >
+                    <th class="text-center">#</th>
+                    <th class="text-center">Item ID</th>
+                    <th class="text-center">Item Quantity</th>
+                    <th class="text-center">Item Unit Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr id='addqitem0'>
+                  <td>1</td>
+                  <td><input type="text" name='item_id0'  placeholder='Item ID' class="form-control"/></td>
+                  <td><input type="number" name='item_quantity_Q0' placeholder='Item Quantity' class="form-control" min="1"/></td>
+                  <td><input type="text" name='item_unit_price_Q0' placeholder='Item Unit Price'  class="form-control" /></td>
+                </tr>
+                <tr id='addqitem1'>
+                  <td>2</td>
+                  <td><input type="text" name='item_id1'  placeholder='Item ID' class="form-control"/></td>
+                  <td><input type="number" name='item_quantity_Q1' placeholder='Item Quantity' class="form-control" min="1"/></td>
+                  <td><input type="text" name='item_unit_price_Q1' placeholder='Item Unit Price'  class="form-control" /></td>
+                </tr>
+                <tr id='addqitem2'>
+                  <td>3</td>
+                  <td><input type="text" name='item_id2'  placeholder='Item ID' class="form-control"/></td>
+                  <td><input type="number" name='item_quantity_Q2' placeholder='Item Quantity' class="form-control" min="1"/></td>
+                  <td><input type="text" name='item_unit_price_Q2' placeholder='Item Unit Price'  class="form-control" /></td>
+                </tr>
+                <tr id='addqitem3'>
+                  <td>4</td>
+                  <td><input type="text" name='item_id3'  placeholder='Item ID' class="form-control"/></td>
+                  <td><input type="number" name='item_quantity_Q3' placeholder='Item Quantity' class="form-control" min="1"/></td>
+                  <td><input type="text" name='item_unit_price_Q3' placeholder='Item Unit Price'  class="form-control" /></td>
+                </tr>
+                <tr id='addqitem4'>
+                  <td>5</td>
+                  <td><input type="text" name='item_id4'  placeholder='Item ID' class="form-control"/></td>
+                  <td><input type="number" name='item_quantity_Q4' placeholder='Item Quantity' class="form-control" min="1"/></td>
+                  <td><input type="text" name='item_unit_price_Q4' placeholder='Item Unit Price'  class="form-control" /></td>
+                </tr>
+              </tbody>
+            </table>
+
+              <br><br>
+
+          <br><br>
+        <div class="margintop">
+          <button type="submit" class="btn btn-success btn-square buttonsize">Submit</button>
+          <a class="btn btn-danger btn-square buttonsize" href="/quotationlist">Cancel</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

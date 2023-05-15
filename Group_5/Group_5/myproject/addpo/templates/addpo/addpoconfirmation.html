@@ -1,0 +1,25 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<div class="formaddpo" >
+    <br>
+    <hi><p><strong>Purchase Order Added!</strong></p></hi>  
+
+    <p>Purchase Order ID: {{ purchase_order_id }}</p>
+    <p>Quotation ID: {{ quotation_id }}</p>
+    <p>Finance Officer ID: {{ finance_officer_id }}</p>
+    <p>Purchase Order Total Price: {{ total_price }}</p>
+    <p>Purchase Order Created Date: {{ purchase_order_created_date }}</p>
+    <p>Purchase Order Delivery Date: {{ delivery_date }}</p>
+    <p>Purchase Order Status: {{ purchase_order_status }}</p>
+
+    <form class="addposubmission margintop" action="addpodetails" method="POST">
+        <div class="margintop">
+            <a class="btn btn-danger btn-square buttonsize" href="/menu">Cancel</a>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

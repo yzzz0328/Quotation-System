@@ -1,0 +1,52 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  
+  .column {
+    float: left;
+    width: 50%;
+    padding: 5px;
+  }
+  
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+</style>
+
+<div class="viewreport" >
+    <br><br>
+    <center><h2 style="font-size:50px"> <strong>Generate Purchase Order Report</strong> </h2></center>
+    <br>
+    <center><p><em>Please select the start date and end date</em></p></center>
+    <br><br>
+    <form class="viewreportform" action='showpurchaseorderreport' method="GET">
+      {% csrf_token %}
+      <center>
+        <div class="row">
+          <div class="column">
+            <p><strong> From </strong></p>
+            <p><input type="date" name="start_date" placeholder='start_date' class="form-control" ></p>
+          </div>
+          <div class="column">
+            <p><strong> To </strong></p>
+            <p><input type="date" name="end_date" placeholder='end_date' class="form-control" ></p>
+          </div>
+        </div>
+    <br><br>
+        <div class="margintop">
+            <button type="submit" class="btn btn-success btn-square buttonsize">Generate</button>
+        </div>
+        <br><br><br><br>
+        <a class="btn btn-danger btn-square buttonsize" href="/menu">Back</a>
+      </center>
+    </form>
+</div>
+ 
+{% endblock %}

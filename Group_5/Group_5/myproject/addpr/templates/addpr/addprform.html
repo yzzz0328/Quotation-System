@@ -1,0 +1,104 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<div class="container">
+    <br>
+    <div class="container">
+    <h1 style="text-align: center"><strong>Purchase Requisition Form</strong></h1>
+    </div>
+    <br>
+    <div class="container">
+    <p>ID: {{ user.get_username }}</p>
+    <p>Name: {{ user.get_full_name }}</p>
+    <p>Email: {{ cust }}</p>
+    </div>
+    <br>
+    <form action="addprconfirmation" method="POST">
+        {% csrf_token %}
+        <div>
+    <div class="container">
+    <div class="row clearfix">
+    <div class="col-md-12 column">
+    <table class="table table-bordered table-hover" id="tab_logic">
+    <thead>
+    <tr>
+    <th class="text-center">
+    #
+    </th>
+    <th class="text-center">
+    Item ID
+    </th>
+    <th class="text-center">
+    Item Quantity
+    </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr id='addpritem0'>
+    <td>
+    1
+    </td>
+    <td>
+    <input type="text" name='item_id0' placeholder='Item ID' class="form-control"/>
+    </td>
+    <td>
+    <input type="number" name='item_quantity_PR0' placeholder='Item Quantity' class="form-control" min="1"/>
+    </td>
+    </tr>
+    <tr id='addpritem1'>
+    <td>
+    2
+    </td>
+    <td>
+    <input type="text" name='item_id1'  placeholder='Item ID' class="form-control"/>
+    </td>
+    <td>
+    <input type="number" name='item_quantity_PR1' placeholder='Item Quantity' class="form-control" min="1"/>
+    </td>
+    </tr>
+    <tr id='addpritem2'>
+    <td>
+    3
+    </td>
+    <td>
+    <input type="text" name='item_id2'  placeholder='Item ID' class="form-control"/>
+    </td>
+    <td>
+    <input type="number" name='item_quantity_PR2' placeholder='Item Quantity' class="form-control" min="1"/>
+    </td>
+    </tr>
+    <tr id='addpritem3'>
+    <td>
+    4
+    </td>
+    <td>
+    <input type="text" name='item_id3'  placeholder='Item ID' class="form-control"/>
+    </td>
+    <td>
+    <input type="number" name='item_quantity_PR3' placeholder='Item Quantity' class="form-control" min="1"/>
+    </td>
+    </tr>
+    <tr id='addpritem4'>
+    <td>
+    5
+    </td>
+    <td>
+    <input type="text" name='item_id4'  placeholder='Item ID' class="form-control"/>
+    </td>
+    <td>
+    <input type="number" name='item_quantity_PR4' placeholder='Item Quantity' class="form-control" min="1"/>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    <br><br>
+    <div class="margintop">
+        <a class="btn btn-danger pull-left" href="menu">Back</a>
+        <button type="submit" class="btn btn-success pull-right">Submit</button>
+    </div>
+    </form>
+</div>
+{% endblock %}

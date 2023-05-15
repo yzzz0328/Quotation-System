@@ -1,0 +1,113 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #DDD;
+  }
+  
+  tr:hover {background-color: #D6EEEE;}
+</style>
+
+<div class="formviewpo">
+    <br><br>
+      <center><h2 style="font-size:50px"> <strong>Purchase Order Form Details</strong> </h2></center>
+    <br><br>
+    <form class="addposubmission" action="addpoconfirmation" method="POST">
+        {% csrf_token %}
+        <div style="width: 100%;">
+            <div style="width: 20%; height: 50px; float: left;"> 
+              <p><strong> Purchase Order ID: </strong></p>
+            </div>
+            <div style="margin-left: 20%; height: 50px;"> 
+              <p>{{ purchase_order_id }}</p>
+            </div>
+        </div>
+        <div style="width: 100%;">
+          <div style="width: 20%; height: 50px; float: left;"> 
+            <p><strong> Quotation ID: </strong></p>
+          </div>
+          <div style="margin-left: 20%; height: 50px;"> 
+            <p>{{ quotation_id }}</p>
+          </div>
+        </div>
+        <div style="width: 100%;">
+            <div style="width: 20%; height: 50px; float: left;"> 
+              <p><strong> Finance Officer ID: </strong></p>
+            </div>
+            <div style="margin-left: 20%; height: 50px;"> 
+              <p>{{ finance_officer }}</p>
+            </div>
+        </div>
+        <div style="width: 100%;">
+            <div style="width: 20%; height: 50px; float: left;"> 
+              <p><strong> Purchase Order Total Price: </strong></p>
+            </div>
+            <div style="margin-left: 20%; height: 50px;"> 
+              <p>{{ total_price }}</p>
+            </div>
+        </div>
+        <div style="width: 100%;">
+            <div style="width: 20%; height: 50px; float: left;"> 
+              <p><strong> Purchase Order Created Date: </strong></p>
+            </div>
+            <div style="margin-left: 20%; height: 50px;"> 
+              <p>{{ purchase_order_created_date }}</p>
+            </div>
+        </div>
+        <div style="width: 100%;">
+          <div style="width: 20%; height: 50px; float: left;"> 
+            <p><strong> Purchase Order Delivery Date: </strong></p>
+          </div>
+          <div style="margin-left: 20%; height: 50px;"> 
+            <p>{{ delivery_date }}</p>
+          </div>
+        </div>
+        <div style="width: 100%;">
+          <div style="width: 20%; height: 50px; float: left;"> 
+            <p><strong> Purchase Order Status: </strong></p>
+          </div>
+          <div style="margin-left: 20%; height: 50px;"> 
+            <p>{{ purchase_order_status }}</p>
+          </div>
+        </div>
+        <br><br>
+        
+        <center><h2 style="font-size:50px"><strong>Purchase Order Item Details</strong></h2></center>
+          <br><br>
+          <table>
+            <tr>
+              <th>Item ID</th>
+              <th>Item Quantity</th>
+              <th>Item Unit Price</th>
+              <th>Item Total Price</th>
+            </tr>
+            {% for i in poitems %}
+              <tr>
+                <td>{{ i.item_id }}</td>
+                <td>{{ i.item_quantity_PO }}</td>
+                <td>{{ i.item_unit_price }}</td>
+                <td>{{ i.item_total_price }}</td>
+              </tr>
+            {% endfor %}
+            </table>
+            <br><br>
+          <br><br>
+        <div class="margintop">
+          <a class="btn btn-danger btn-square buttonsize" href="/polist">Cancel</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

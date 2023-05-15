@@ -1,0 +1,61 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<style>
+    * {
+      box-sizing: border-box;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #DDD;
+    }
+    
+    tr:hover {background-color: #D6EEEE;}
+</style>
+
+<div class="formviewpo_M">
+    <form class="viewpo_Mform" action="showpo_M" method="POST">
+      {% csrf_token %}
+    <br><br>
+      <center><h2 style="font-size:50px"> <strong>Purchase Order List</strong> </h2></center>
+    <br><br>
+        <div>
+          <br><br>
+          <table>
+            <tr>
+              <th>Purchase Order ID</th>
+              <th>Status</th>
+            </tr>
+            {% for i in polist %}
+              <tr>
+                <td>{{ i.purchase_order_id }}</td>
+                <td>{{ i.purchase_order_status }}</td>
+              </tr>
+            {% endfor %}
+            </table>
+            <br><br>
+            <div style="width: 100%;">
+              <div style="width: 15%; height: 50px; float: left;"> 
+                <p><strong> Purchase Order ID: </strong></p>
+              </div>
+              <div style="margin-left: 15%; height: 50px;"> 
+                <p><input type="text" name='purchase_order_id' placeholder='Purchase Order ID'  class="form-control" /></p>
+              </div>
+            </div>
+            <center>
+              <div class="margintop">
+                <td><button id = "View_btn" type="submit" class="btn btn-success btn-square buttonsize">View</button></td>
+                <a class="btn btn-danger btn-square buttonsize" href="/menu">Cancel</a>
+              </div>
+            </center>
+    </form>
+</div>
+
+{% endblock %}

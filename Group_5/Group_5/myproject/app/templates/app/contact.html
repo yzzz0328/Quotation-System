@@ -1,0 +1,77 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<br> <br> <br>
+<center><h2 style="font-size:50px"> <strong> {{ title }} </strong> </h2></center>
+
+<style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    .column {
+      float: left;
+      width: 50%;
+      padding: 10px;
+    }
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+</style>
+
+<br><br>
+<div c>
+    <div class="column">
+        <h3><strong>{{ message1 }}</strong></h3>
+        <h4><strong><em>{{ role1 }}</em></strong><h4>
+            <address>
+                <abbr title="Student_ID">ID:</abbr>
+                1201303001
+                <br>
+                Faculty of Computing &amp; Informatics<br />
+                Multimedia University<br />
+            </address>
+    </div>
+    <div class="column">
+        <h3><strong>{{ message2 }}</strong></h3>
+        <h4><strong><em>{{ role2 }}</em></strong><h4>
+            <address>
+                <abbr title="Student_ID">ID:</abbr>
+                1201303235
+                <br>
+                Faculty of Computing &amp; Informatics<br />
+                Multimedia University<br />
+            </address>
+    </div>
+</div>
+
+<br>
+<div class="row">
+    <div class="column">
+        <h3><strong>{{ message3 }}</strong></h3>
+        <h4><strong><em>{{ role2 }}</em></strong><h4>
+            <address>
+                <abbr title="Student_ID">ID:</abbr>
+                1191102765
+                <br>
+                Faculty of Computing &amp; Informatics<br />
+                Multimedia University<br />
+            </address>
+    </div>
+    <div class="column">
+        <h3><strong>{{ message4 }}</strong></h3>
+        <h4><strong><em>{{ role2 }}</em></strong><h4>
+            <address>
+                <abbr title="Student_ID">ID:</abbr>
+                1201303393
+                <br>
+                Faculty of Computing &amp; Informatics<br />
+                Multimedia University<br />
+            </address>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,131 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  
+  .column {
+    float: left;
+    width: 50%;
+    padding: 5px;
+  }
+  
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #DDD;
+  }
+  
+  tr:hover {background-color: #D6EEEE;}
+</style>
+
+<div class="viewreport" >
+    <br><br>
+    <center><h2 style="font-size:50px"> <strong>Purchase Order Report</strong> </h2></center>
+    <br>
+    <form class="showpurchaseorderreport" method="POST">
+      {% csrf_token %}
+      <center>
+        <div class="row">
+          <div class="column">
+            <p><strong> From </strong></p>
+            <p>{{start_date}}</p>
+          </div>
+          <div class="column">
+            <p><strong> To </strong></p>
+            <p>{{end_date}}</p>
+          </div>
+        </div>
+      </center>
+      <div class="row margintop">
+        <table>
+          <tr>
+            <th colspan="3"><center>Salesman</center></th>
+          </tr>
+          <tr>
+            <th>Salesman ID</th>
+            <th>Salesman Name</th>
+            <th>Total Sales (RM)</th>
+          </tr>
+          {% for s in salesman %}
+            <tr>
+              <td>{{ s.0 }}</td>
+              <td>{{ s.1 }}</td>
+              <td>{{ s.2|floatformat:2 }}</td>
+            </tr>
+          {% endfor%}
+        </table>
+        <p><center>Top salesman is {{salesman_name}} with total sales of RM{{salesman_total_sales|floatformat:2}} between {{start_date}} and {{end_date}}.</center></p>
+      </div>
+      <br><br>
+    
+      <div class="row margintop">
+        <table>
+          <tr>
+            <th colspan="4"><center>Product</center></th>
+          </tr>
+          <tr>
+            <th>Item ID</th>
+            <th>Item Name</th>
+            <th>Total Quantity</th>
+            <th>Total Sales (RM)</th>
+          </tr>
+          {% for y in items %}
+            <tr>
+              <td>{{ y.0 }}</td>
+              <td>{{ y.1 }}</td>
+              <td>{{ y.2 }}</td>
+              <td>{{ y.3|floatformat:2 }}</td>
+            </tr>
+          {% endfor %}
+        </table>
+        <p><center>The most popular product is {{top_product}} with {{top_product_q}} units sold.</center></p>
+      </div>
+      <br><br>
+
+      <div class="row margintop">
+        <table>
+          <tr>
+            <th colspan="3"><center>Purchase Order Created</center></th>
+          </tr>
+          <tr>
+            <th>Purchase Order ID</th>
+            <th>Status</th>
+            <th>Total Sales (RM)</th>
+          </tr>
+          {% for x in data %}
+            <tr>
+              <td>{{ x.purchase_order_id }}</td>
+              <td>{{ x.purchase_order_status }}</td>
+              <td>{{ x.total_price }}</td>
+            </tr>
+          {% endfor %}
+        </table>
+        <p><center>There were {{x}} purchase orders created with {{a}} approved cases, {{b}} rejected cases, and {{c}} pending cases.</center></p>
+        <p><center>Total sales made were RM {{total_sales|floatformat:2}}.</center></p>
+      </div>
+
+      <br><br>
+      <center>
+        <div class="margintop">
+            <a class="btn btn-danger btn-square buttonsize" href="/menu">Cancel</a>
+        </div>
+      </center>
+    </form>
+</div>
+ 
+{% endblock %}
